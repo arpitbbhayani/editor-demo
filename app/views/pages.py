@@ -8,3 +8,8 @@ mod = Blueprint('pages', __name__, )
 @mod.route('/', methods=["GET", "POST"])
 def index():
     return render_template('index.html')
+
+
+@mod.route('/editor', methods=["GET", "POST"])
+def editor():
+    return render_template('editor.html')
