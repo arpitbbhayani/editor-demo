@@ -1,46 +1,48 @@
 {% extends "boilerplate.html" %}
 
 {% block content %}
-    <div class="ui grid">
-        <div class="four wide column">
-            <div class="ui basic segment">
-                <div class="ui hidden divider"></div>
-                <div class="ui header">
-                    Editor Demo
-                </div>
-                <div class="ui divider"></div>
-                <div class="ui form" id="open_file_form">
-                    <div class="required field">
-                        <label>Complete file path</label>
-                        <input type="text" name="filepath" />
-                    </div>
-                    <div class="field">
-                        <input type="button" id="open_file_form_submit_button" class="ui button basic orange" value="Open in editor"/>
-                    </div>
-                </div>
-            </div>
+<div class="ui top attached borderless menu">
+    <div class="large header item">
+        <img src="/static/images/logo.png">
+        &nbsp; <a href="/">Editor Demo</a>
+    </div>
+    <div class="item">
+        <h4 id="open_file_form_filepath"></h4>
+    </div>
+    <div class="right menu">
+        <div class="item">
+            <select class="ui search dropdown" name="filetype" id="open_file_form_update_mode_dropdown">
+                <option value="">Choose Highlighter</option>
+                <option value="javascript">Javascript</option>
+                <option value="yaml">YAML</option>
+            </select>
         </div>
-        <div class="twelve wide column">
-            <div class="ui top attached borderless menu">
-                <div class="item">
-                    <h4 id="open_file_form_filepath"></h4>
-                </div>
-                <div class="right menu">
-                    <div class="item">
-                        <select class="ui search dropdown" name="filetype" id="open_file_form_update_mode_dropdown">
-                            <option value="">Choose Highlighter</option>
-                            <option value="javascript">Javascript</option>
-                            <option value="yaml">YAML</option>
-                        </select>
-                    </div>
-                    <div class="item">
-                        <div class="ui button basic green" id="open_file_form_save_button"><i class="save icon"></i>Save</div>
-                    </div>
-                </div>
-            </div>
-            <textarea id="online_editor"></textarea>
+        <div class="item">
+            <div class="ui button basic green" id="open_file_form_save_button"><i class="save icon"></i>Save</div>
         </div>
     </div>
+</div>
+<div class="ui grid">
+    <div class="four wide column">
+        <div class="ui basic segment">
+            <div class="ui form" id="open_file_form">
+                <div class="required small field">
+                    <label>Complete file path</label>
+                    <div class="ui icon input">
+                        <input type="text" name="filepath" placeholder="Absolute file path"/>
+                        <i class="file icon"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="button" id="open_file_form_submit_button" class="ui button basic orange" value="Open in editor"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="twelve wide column">
+        <textarea id="online_editor"></textarea>
+    </div>
+</div>
 {% endblock %}
 
 {% block head %}
