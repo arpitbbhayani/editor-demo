@@ -41,3 +41,4 @@ http://localhost:5000/
 
 ## Copyright and license
 Code copyright 2015 Arpit Bhayani. Code released under [the MIT license](https://github.com/arpitbbhayani/flask-template/blob/master/LICENSE).
+# editor-demo
