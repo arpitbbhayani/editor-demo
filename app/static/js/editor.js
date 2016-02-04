@@ -27,7 +27,7 @@ $(document).ready(function() {
                 $('#open_file_form_filepath').text(filepath);
                 editor.setValue(result.content);
             }).fail(function(response) {
-                alert(response.responseText.responseText);
+                alert(response.responseText);
             }).always(function(){
                 $button.removeClass('loading');
             });
@@ -48,7 +48,7 @@ $(document).ready(function() {
             $.get('/save', {path: filepath, content: content}, function(result) {
                 alert(result.content);
             }).fail(function(response) {
-                alert(response.responseText.responseText);
+                alert(response.responseText);
             }).always(function() {
                 $button.removeClass('loading');
             });

@@ -18,11 +18,11 @@ def editor():
 def fetch_file():
     filepath = request.args.get('path')
     if not filepath:
-        return jsonify(responseText="No path passed"), 403
+        return "No path passed", 403
     try:
         content = open(filepath, "rb").read()
     except:
-        return jsonify(responseText="Error reading file"), 403
+        return "Error reading file", 403
 
     return jsonify(content=content)
 
@@ -33,16 +33,16 @@ def save_file():
     content = request.args.get('content')
 
     if not filepath:
-        return jsonify(responseText="No path passed"), 403
+        return "No path passed", 403
 
     if not content:
-        return jsonify(responseText="No content passed"), 403
+        return "No content passed", 403
 
     try:
         with open(filepath, "wb") as f:
             f.write(content)
-            message = "File save successfully"
+            message = "File saved successfully"
     except:
-        return jsonify(responseText="Error writing file"), 403
+        return "Error writing file", 403
 
     return jsonify(content=message)
