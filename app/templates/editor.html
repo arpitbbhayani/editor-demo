@@ -6,16 +6,19 @@
         <img src="/static/images/logo.png">
         &nbsp; <a href="/">Editor Demo</a>
     </div>
-    <div class="item">
-        <h4 id="open_file_form_filepath"></h4>
-    </div>
     <div class="right menu">
+        <div class="item">
+            <h4 id="open_file_form_filepath"></h4>
+        </div>
         <div class="item">
             <select class="ui search dropdown" name="filetype" id="open_file_form_update_mode_dropdown">
                 <option value="">Choose Highlighter</option>
                 <option value="javascript">Javascript</option>
                 <option value="yaml">YAML</option>
             </select>
+        </div>
+        <div class="item">
+            <div class="ui button basic violet" id="open_file_form_diff_button"><i class="save icon"></i>Toggle Diff</div>
         </div>
         <div class="item">
             <div class="ui button basic green" id="open_file_form_save_button"><i class="save icon"></i>Save</div>
@@ -42,14 +45,19 @@
     <div class="twelve wide column">
         <textarea id="online_editor"></textarea>
     </div>
+    <div class="twelve wide column">
+        <div id="compare"></div>
+    </div>
 </div>
 {% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/css/codemirror.css">
+<link rel="stylesheet" href="/static/css/mergely.css">
 
 <script src="/static/js/lib/codemirror.js"></script>
 <script src="/static/js/lib/codemirror_modes/yaml.js"></script>
 <script src="/static/js/lib/codemirror_modes/javascript.js"></script>
+<script src="/static/js/lib/mergely.min.js"></script>
 <script src="/static/js/editor.js"></script>
 {% endblock %}
