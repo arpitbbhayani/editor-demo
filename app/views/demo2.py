@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template, request
+from flask import render_template, request, make_response
 
 mod = Blueprint('demo2', __name__, )
 
@@ -7,6 +7,21 @@ mod = Blueprint('demo2', __name__, )
 @mod.route('/', methods=["GET"])
 def index():
     return render_template('demo2_input.html')
+
+
+@mod.route('/download', methods=['POST'])
+def download():
+    filename = request.form.get('filename')
+    content = request.form.get('content')
+    if not content:
+        return "No content passed", 403
+
+    if not filename:
+        return "No filename passed", 403
+
+    response = make_response(content)
+    response.headers["Content-Disposition"] = "attachment;filename=" + filename
+    return response
 
 
 @mod.route('/editor', methods=["POST"])

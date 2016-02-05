@@ -19,4 +19,34 @@ $(document).ready(function() {
     $lhseditor.setOption('readOnly', true);
     $lhseditor.setOption('mode', highlighter);
     $rhseditor.setOption('mode', highlighter);
+
+
+    $('#download_button').click(function() {
+        var url = '/demo2/download';
+        var content = $('#last_saved_content').text();
+        var filename = "newfile";
+
+        var form = $('<form action="' + url + '" method="post">' +
+            '<input type="text" name="filename" value="' + filename + '" />' +
+            '<input type="text" name="content" value="' + content + '" />' +
+            '</form>');
+        $('body').append(form);
+        form.submit();
+    });
+
+    $('#save_button').click(function() {
+        var content = $rhseditor.getValue();
+        $('#last_saved_content').text(content);
+        alert('Contents saved successfully!');
+    });
+
+    $('#revert_last_saved_button').click(function() {
+        var content = $('#last_saved_content').text();
+        $rhseditor.setValue(content);
+    });
+
+    $('#revert_original_button').click(function() {
+        var content = $('#original_content').text();
+        $rhseditor.setValue(content);
+    });
 });
