@@ -1,10 +1,15 @@
 {% extends "boilerplate.html" %}
 
 {% block content %}
-    <div class="ui middle aligned" style="padding-top: 50px;">
+    <div class="ui hidden divider"></div>
+    <div class="ui middle aligned">
         <img class="ui centered small image" src="/static/images/logo.png">
-        <h2 class="ui header center aligned"><a href="{{url_for('pages.editor')}}">Editor Demo</a></h2>
+        <h2 class="ui header center aligned">Edotor</h2>
         <h4 class="ui header center aligned">By <a href="https://github.com/arpitbbhayani/">Arpit Bhayani</a></h4>
+    </div>
+    <div class="ui hidden divider"></div>
+    <div class="ui middle aligned">
+        <h2 class="ui header center aligned small"><u><a href="{{url_for('pages.demo1')}}">Demo 1</a></u></h2>
     </div>
 {% endblock %}
 

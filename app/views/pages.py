@@ -9,9 +9,9 @@ def index():
     return render_template('index.html')
 
 
-@mod.route('/editor', methods=["GET", "POST"])
-def editor():
-    return render_template('editor.html')
+@mod.route('/demo1', methods=["GET", "POST"])
+def demo1():
+    return render_template('demo1.html')
 
 
 @mod.route('/fetch', methods=["GET", "POST"])
