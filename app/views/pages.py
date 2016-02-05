@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, redirect, url_for
 
 mod = Blueprint('pages', __name__, )
 
@@ -11,7 +11,22 @@ def index():
 
 @mod.route('/demo1', methods=["GET", "POST"])
 def demo1():
+    return redirect(url_for('pages.demo1_editor'))
+
+
+@mod.route('/demo1/editor', methods=["GET", "POST"])
+def demo1_editor():
     return render_template('demo1.html')
+
+
+@mod.route('/demo2', methods=["GET", "POST"])
+def demo2():
+    return render_template('demo2.html')
+
+
+@mod.route('/demo2/editor', methods=["POST"])
+def demo2_editor():
+    return render_template('demo2.html')
 
 
 @mod.route('/fetch', methods=["GET", "POST"])

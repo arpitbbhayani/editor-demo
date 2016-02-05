@@ -1,0 +1,29 @@
+{% extends "boilerplate.html" %}
+
+{% block content %}
+<div class="ui top attached borderless menu">
+    <div class="large header item">
+        <img src="/static/images/logo.png">
+        &nbsp; <a href="/">Edotor</a>
+    </div>
+</div>
+<div class="ui grid">
+    <div class="six wide column">
+    <div class="six wide column">
+        <div class="ui basic segment">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/codemirror.css">
+<link rel="stylesheet" href="/static/css/mergely.css">
+
+<script src="/static/js/lib/codemirror.js"></script>
+<script src="/static/js/lib/codemirror_modes/yaml.js"></script>
+<script src="/static/js/lib/codemirror_modes/javascript.js"></script>
+<script src="/static/js/lib/mergely.min.js"></script>
+<script src="/static/js/demo2.js"></script>
+{% endblock %}
