@@ -31,7 +31,9 @@ $(document).ready(function() {
         var is_valid = $form.form('validate form');
         if(is_valid) {
             var $button = $(this);
-            var filepath = $('#open_file_form').find('[name="filepath"]').val();
+            var $filepath_box = $('#open_file_form').find('[name="filepath"]');
+            var filepath = $filepath_box.val();
+            $filepath_box.val(null);
 
             $button.addClass('loading');
             $.get('/fetch', {path: filepath}, function(result) {
@@ -74,6 +76,7 @@ $(document).ready(function() {
             $button.addClass('loading');
             $.get('/save', {path: filepath, content: content}, function(result) {
                 alert(result.content);
+                old_content = content;
             }).fail(function(response) {
                 alert(response.responseText);
             }).always(function() {
