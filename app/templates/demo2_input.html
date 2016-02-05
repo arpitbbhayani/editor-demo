@@ -1,0 +1,42 @@
+{% extends "boilerplate.html" %}
+
+{% block content %}
+<div class="ui top attached borderless menu">
+    <div class="ui large header item">
+        <img src="/static/images/logo.png">
+        &nbsp; <a href="/">Edotor</a>
+    </div>
+</div>
+<div class="ui divider hidden"></div>
+<div class="ui middle aligned grid child">
+    <div class="column">
+        <div class="ui center aligned page grid">
+            <div class="eight wide column">
+                <div class="ui left aligned segment">
+                    <h4 class="ui dividing header">Open File to edit</h4>
+                    <form class="ui form" method="POST" enctype="multipart/form-data" action="{{url_for('demo2.editor')}}">
+                        <div class="field">
+                            <label for="datafile">Datafile</label>
+                            <div class="ui icon input">
+                                <input type="file" name="datafile" file="datafile"/>
+                            </div>
+                        </div>
+                        <input type="submit" name="submit" value="Open" class="ui inverted blue button" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/codemirror.css">
+<link rel="stylesheet" href="/static/css/mergely.css">
+
+<script src="/static/js/lib/codemirror.js"></script>
+<script src="/static/js/lib/codemirror_modes/yaml.js"></script>
+<script src="/static/js/lib/codemirror_modes/javascript.js"></script>
+<script src="/static/js/lib/mergely.min.js"></script>
+<script src="/static/js/demo2.js"></script>
+{% endblock %}

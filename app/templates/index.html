@@ -8,9 +8,15 @@
         <h4 class="ui header center aligned">By <a href="https://github.com/arpitbbhayani/">Arpit Bhayani</a></h4>
     </div>
     <div class="ui hidden divider"></div>
-    <div class="ui middle aligned">
-        <h2 class="ui header center aligned small"><u><a href="{{url_for('pages.demo1')}}">Demo 1</a></u></h2>
-        <h2 class="ui header center aligned small"><u><a href="{{url_for('pages.demo2')}}">Demo 2</a></u></h2>
+    <div class="ui center aligned basic segment">
+        <div class="ui horizontal list">
+            <div class="item">
+                <h2 class="ui header  small"><u><a href="{{url_for('demo1.index')}}">Demo 1</a></u></h2>
+            </div>
+            <div class="item">
+                <h2 class="ui header  small"><u><a href="{{url_for('demo2.index')}}">Demo 2</a></u></h2>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

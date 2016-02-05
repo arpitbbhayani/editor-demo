@@ -36,7 +36,7 @@ $(document).ready(function() {
             $filepath_box.val(null);
 
             $button.addClass('loading');
-            $.get('/fetch', {path: filepath}, function(result) {
+            $.get('/demo1/fetch', {path: filepath}, function(result) {
                 $('#open_file_form_filepath').text(filepath);
                 old_content = result.content;
                 editor.setValue(result.content);
@@ -74,7 +74,7 @@ $(document).ready(function() {
             var content = editor.getValue();
 
             $button.addClass('loading');
-            $.get('/save', {path: filepath, content: content}, function(result) {
+            $.get('/demo1/save', {path: filepath, content: content}, function(result) {
                 alert(result.content);
                 old_content = content;
             }).fail(function(response) {

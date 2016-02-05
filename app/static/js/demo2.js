@@ -1,88 +1,22 @@
 $(document).ready(function() {
-    $('.ui.dropdown').dropdown();
-    $('#compare').parent().hide();
-
-    var old_content = '';
-
-    var editor = CodeMirror.fromTextArea(document.getElementById("online_editor"), {
-        lineNumbers: true,
-        mode: "default",
-        theme: "material"
-    });
-
-    function updatemode(mode) {
-        editor.setOption("mode", mode);
-    }
-
     $('#compare').mergely({
-        cmsettings: { readOnly: true },
-        editor_width: '45%',
-        editor_height: '100%'
+        cmsettings: { readOnly: false, theme: 'solarized light' },
+        editor_width: '48%',
+        editor_height: '80%'
     });
 
-    $('#open_file_form').form({
-        fields: {
-            filepath : 'empty'
-        }
-    });
+    var highlighter = $('#highlighter').text();
+    var original_content = $('#original_content').text();
+    $('#highlighter').val(null);
+    $('#original_content').val(null);
 
-    $('#open_file_form_submit_button').click(function () {
-        var $form = $('#open_file_form');
-        var is_valid = $form.form('validate form');
-        if(is_valid) {
-            var $button = $(this);
-            var $filepath_box = $('#open_file_form').find('[name="filepath"]');
-            var filepath = $filepath_box.val();
-            $filepath_box.val(null);
+    var $lhseditor = $('#compare').mergely('cm', 'lhs');
+    var $rhseditor = $('#compare').mergely('cm', 'rhs');
 
-            $button.addClass('loading');
-            $.get('/fetch', {path: filepath}, function(result) {
-                $('#open_file_form_filepath').text(filepath);
-                old_content = result.content;
-                editor.setValue(result.content);
-            }).fail(function(response) {
-                alert(response.responseText);
-            }).always(function(){
-                $('#online_editor').parent().show();
-                $('#compare').parent().hide();
-                $button.removeClass('loading');
-            });
-        }
-    });
+    $lhseditor.setValue(original_content);
+    $rhseditor.setValue(original_content);
 
-    $('#open_file_form_update_mode_dropdown').change(function() {
-        updatemode($(this).val());
-    });
-
-    $('#open_file_form_diff_button').click(function() {
-        if(!old_content) {
-            alert('No file selected');
-            return;
-        }
-
-        $('#online_editor').parent().toggle();
-        $('#compare').parent().toggle();
-
-        $('#compare').mergely('lhs', old_content);
-        $('#compare').mergely('rhs', editor.getValue());
-    });
-
-    $('#open_file_form_save_button').click(function () {
-        if(confirm('Do you really want to save the file?')) {
-            var $button = $('#open_file_form_save_button');
-            var filepath = $('#open_file_form_filepath').text();
-            var content = editor.getValue();
-
-            $button.addClass('loading');
-            $.get('/save', {path: filepath, content: content}, function(result) {
-                alert(result.content);
-                old_content = content;
-            }).fail(function(response) {
-                alert(response.responseText);
-            }).always(function() {
-                $button.removeClass('loading');
-            });
-        }
-    });
-
+    $lhseditor.setOption('readOnly', true);
+    $lhseditor.setOption('mode', highlighter);
+    $rhseditor.setOption('mode', highlighter);
 });
